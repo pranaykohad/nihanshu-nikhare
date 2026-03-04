@@ -70,7 +70,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Casa Serena',
       category: 'Residential',
       year: '2023',
-      location: 'Mumbai, India',
+      location: 'Nagpur, India',
       image: 'assets/sean-pollock-PhYq704ffdA-unsplash.jpg',
       description:
         'A minimalist luxury villa that merges indoor and outdoor living through expansive glass facades and natural stone.',
@@ -81,7 +81,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Zenith Tower',
       category: 'Commercial',
       year: '2022',
-      location: 'Pune, India',
+      location: 'Nagpur, India',
       image: 'assets/adrian-cuj-o_9YmCY0bag-unsplash.jpg',
       description:
         'A 28-storey commercial tower redefining the city skyline with biophilic design and sustainable systems.',
@@ -92,7 +92,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'The Terrace Residence',
       category: 'Residential',
       year: '2023',
-      location: 'Goa, India',
+      location: 'Nagpur, India',
       image: 'assets/dan-freeman-WHPsxhB4mWQ-unsplash.jpg',
       description:
         'Clifftop residence inspired by the landscape, with terraced gardens cascading toward the sea.',
@@ -103,7 +103,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Blueprint Studio',
       category: 'Interior',
       year: '2022',
-      location: 'Bangalore, India',
+      location: 'Nagpur, India',
       image: 'assets/construction-plans-drawing-tools-blueprints.jpg',
       description:
         'A creative studio workspace where raw concrete meets warm timber in a perfectly balanced composition.',
@@ -114,7 +114,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Mist Pavilion',
       category: 'Landscape',
       year: '2021',
-      location: 'Coorg, India',
+      location: 'Nagpur, India',
       image: 'assets/howard-bouchevereau-042Srn0-82o-unsplash.jpg',
       description:
         'An open-air pavilion nestled in the Western Ghats forest, designed to disappear into its surroundings.',
@@ -125,7 +125,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Urban Loft',
       category: 'Interior',
       year: '2023',
-      location: 'Delhi, India',
+      location: 'Nagpur, India',
       image: 'assets/klim-musalimov-pw-BkIYqnfo-unsplash.jpg',
       description:
         'Industrial loft conversion with bespoke steel joinery and a curated palette of earth tones.',
@@ -136,7 +136,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Heritage Renewal',
       category: 'Commercial',
       year: '2021',
-      location: 'Jaipur, India',
+      location: 'Nagpur, India',
       image: 'assets/joakim-nadell-K67sBVqLLuw-unsplash.jpg',
       description:
         'Adaptive reuse of a colonial-era warehouse into a vibrant mixed-use cultural hub.',
@@ -147,7 +147,7 @@ export class AppComponent implements OnInit, OnDestroy {
       title: 'Sahara Villa',
       category: 'Residential',
       year: '2022',
-      location: 'Udaipur, India',
+      location: 'Nagpur, India',
       image: 'assets/paul-menz-jh_KHWamObU-unsplash.jpg',
       description:
         'Desert-inspired villa harnessing passive cooling and traditional Rajasthani craftsmanship.',
