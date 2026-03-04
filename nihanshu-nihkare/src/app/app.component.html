@@ -1,0 +1,495 @@
+<!-- ========================================================
+     NAVIGATION
+     ======================================================== -->
+<nav class="nav" [class.scrolled]="navScrolled()">
+  <!-- Logo -->
+  <div class="nav__logo" (click)="setTab('home')">
+    <span class="logo-name">Nihanshu Nikhare</span>
+    <span class="logo-title">Architect &amp; Principal</span>
+  </div>
+
+  <!-- Desktop Links -->
+  <ul class="nav__links">
+    @for (link of navLinks; track link.tab) {
+    <li class="nav__link" [class.active]="activeTab() === link.tab" (click)="setTab(link.tab)">
+      {{ link.label }}
+    </li>
+    }
+  </ul>
+
+  <!-- Desktop CTA -->
+  <button class="nav__cta" (click)="setTab('contact')">Get in Touch</button>
+
+  <!-- Hamburger -->
+  <div class="nav__hamburger" [class.open]="menuOpen()" (click)="toggleMenu()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+@if (menuOpen()) {
+<div class="nav__mobile-menu">
+  @for (link of navLinks; track link.tab) {
+  <span class="mobile-link" [class.active]="activeTab() === link.tab" (click)="setTab(link.tab)">{{ link.label }}</span>
+  }
+</div>
+}
+
+
+<!-- ========================================================
+     HOME PAGE
+     ======================================================== -->
+@if (activeTab() === 'home') {
+<div class="page" id="home">
+
+  <!-- Hero -->
+  <section class="hero" aria-label="Hero">
+    <!-- Carousel Background -->
+    <div class="hero__carousel" aria-hidden="true">
+      @for (img of heroImages; track img; let i = $index) {
+      <img class="hero__carousel-slide" [class.active]="activeHeroSlide() === i" [src]="img" alt="" loading="eager" />
+      }
+    </div>
+    <div class="hero__overlay"></div>
+
+    <!-- Carousel Indicators -->
+    <div class="hero__indicators" aria-hidden="true">
+      @for (img of heroImages; track img; let i = $index) {
+      <button class="hero__dot" [class.active]="activeHeroSlide() === i" (click)="activeHeroSlide.set(i)"></button>
+      }
+    </div>
+
+    <div class="hero__content">
+      <p class="hero__eyebrow">Architecture &amp; Design</p>
+      <h1 class="hero__headline">
+        Spaces that <em>breathe</em>,<br>
+        stories built<br>
+        in stone &amp; light.
+      </h1>
+      <p class="hero__sub">
+        Crafting architecture that honours context, human experience,
+        and the poetry of materials — across India and beyond.
+      </p>
+      <div class="hero__actions">
+        <button class="btn-primary" (click)="setTab('projects')">
+          Explore Work <span class="arrow">→</span>
+        </button>
+        <button class="btn-outline" (click)="setTab('about')">
+          Our Story
+        </button>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+
+  <!-- Featured Work -->
+  <section class="section" aria-labelledby="featured-title">
+    <p class="section-eyebrow">Selected Work</p>
+    <h2 class="section-title" id="featured-title">
+      Where vision<br>
+      meets <em>craft</em>
+    </h2>
+
+    <div class="featured-grid">
+      <div class="featured-item large" (click)="setTab('projects')" tabindex="0" role="button"
+        aria-label="View project: Casa Serena">
+        <img class="featured-item__img" src="assets/tim-stief-dH6IjhWHNQQ-unsplash.jpg" alt="Casa Serena – luxury villa"
+          loading="lazy" />
+        <div class="featured-item__info">
+          <h3>Casa Serena</h3>
+          <p>Residential · Mumbai</p>
+        </div>
+      </div>
+      <div class="featured-item" (click)="setTab('projects')" tabindex="0" role="button"
+        aria-label="View project: Zenith Tower">
+        <img class="featured-item__img" src="assets/sean-pollock-PhYq704ffdA-unsplash.jpg"
+          alt="Zenith Tower – commercial high rise" loading="lazy" />
+        <div class="featured-item__info">
+          <h3>Zenith Tower</h3>
+          <p>Commercial · Pune</p>
+        </div>
+      </div>
+      <div class="featured-item" (click)="setTab('projects')" tabindex="0" role="button"
+        aria-label="View project: Mist Pavilion">
+        <img class="featured-item__img" src="assets/howard-bouchevereau-042Srn0-82o-unsplash.jpg"
+          alt="Mist Pavilion – landscape architecture" loading="lazy" />
+        <div class="featured-item__info">
+          <h3>Mist Pavilion</h3>
+          <p>Landscape · Coorg</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem; display: flex; justify-content: center;">
+      <button class="btn-outline" (click)="setTab('projects')">
+        View All Projects <span style="margin-left: 0.5rem;">→</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section section" aria-label="Studio statistics">
+    <div class="stats-grid">
+      @for (stat of stats; track stat.label) {
+      <div class="stat-item">
+        <div class="stat-value">{{ stat.value }}</div>
+        <div class="stat-label">{{ stat.label }}</div>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" aria-labelledby="services-title">
+    <p class="section-eyebrow">What We Do</p>
+    <h2 class="section-title" id="services-title">
+      Crafting possibilities with<br>our <em>architectural palette</em>
+    </h2>
+    <p class="section-subtitle">
+      From first sketches to final handover, our practice weaves together strategy,
+      beauty, and precision to bring your vision to life.
+    </p>
+
+    <div class="services-grid">
+      @for (service of services; track service.title) {
+      <div class="service-card">
+        <div class="service-icon">{{ service.icon }}</div>
+        <h3 class="service-title">{{ service.title }}</h3>
+        <p class="service-desc">{{ service.description }}</p>
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">Nihanshu <span>Nikhare</span></div>
+    <p class="footer-copy">© 2025 · All rights reserved</p>
+    <div class="footer-socials">
+      <a role="link" tabindex="0">Instagram</a>
+      <a role="link" tabindex="0">LinkedIn</a>
+      <a role="link" tabindex="0">Behance</a>
+    </div>
+  </footer>
+</div>
+}
+
+
+<!-- ========================================================
+     PROJECTS PAGE
+     ======================================================== -->
+@if (activeTab() === 'projects') {
+<div class="page" id="projects">
+
+  <!-- Projects Hero -->
+  <section class="projects-hero" aria-label="Projects header">
+    <div class="projects-hero__bg"></div>
+    <div class="projects-hero__overlay"></div>
+    <div class="projects-hero__content">
+      <p class="section-eyebrow">Portfolio</p>
+      <h1 class="section-title">
+        A body of <em>work</em><br>
+        built with intention
+      </h1>
+    </div>
+  </section>
+
+  <!-- Filter + Grid -->
+  <section class="section" aria-labelledby="projects-title">
+    <h2 class="sr-only" id="projects-title">All Projects</h2>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar" role="group" aria-label="Filter projects by category">
+      @for (cat of categories; track cat) {
+      <button class="filter-btn" [class.active]="activeFilter() === cat" (click)="setFilter(cat)">{{ cat }}</button>
+      }
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+      @for (project of filteredProjects; track project.id) {
+      <article class="project-card" [attr.aria-label]="project.title">
+        <div class="project-card__img-wrap">
+          <img class="project-card__img" [src]="project.image" [alt]="project.title" loading="lazy" />
+          @if (project.tag) {
+          <span class="project-card__tag">{{ project.tag }}</span>
+          }
+        </div>
+        <div class="project-card__body">
+          <div class="project-card__meta">
+            <span class="project-card__category">{{ project.category }}</span>
+            <span class="project-card__year">{{ project.year }}</span>
+          </div>
+          <h2 class="project-card__title">{{ project.title }}</h2>
+          <p class="project-card__location">📍 {{ project.location }}</p>
+          <p class="project-card__desc">{{ project.description }}</p>
+        </div>
+      </article>
+      }
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">Nihanshu <span>Nikhare</span></div>
+    <p class="footer-copy">© 2025 · All rights reserved</p>
+    <div class="footer-socials">
+      <a role="link" tabindex="0">Instagram</a>
+      <a role="link" tabindex="0">LinkedIn</a>
+      <a role="link" tabindex="0">Behance</a>
+    </div>
+  </footer>
+</div>
+}
+
+
+<!-- ========================================================
+     ABOUT PAGE
+     ======================================================== -->
+@if (activeTab() === 'about') {
+<div class="page" id="about">
+
+  <!-- About Hero -->
+  <section class="about-hero" aria-label="About header">
+    <div class="about-hero__bg"></div>
+    <div class="about-hero__overlay"></div>
+    <div class="about-hero__content">
+      <p class="section-eyebrow">About</p>
+      <h1 class="section-title">
+        Architecture is<br>
+        <em>listening</em> made visible
+      </h1>
+    </div>
+  </section>
+
+  <!-- About Content -->
+  <section class="section" aria-labelledby="about-title">
+    <h2 class="sr-only" id="about-title">About Nihanshu Nikhare</h2>
+
+    <div class="about-layout">
+      <!-- Image Stack -->
+      <div class="about-image-stack" aria-hidden="true">
+        <img class="img-main" src="assets/donny-jiang-42gFAgdIUC8-unsplash.jpg" alt="Studio at work" loading="lazy" />
+        <img class="img-accent" src="assets/iltun-huseynli-rfklsTwIYBM-unsplash.jpg" alt="Architectural detail"
+          loading="lazy" />
+        <div class="experience-badge">
+          <span class="badge-number">15+</span>
+          <span class="badge-text">Years of<br>Practice</span>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="about-text">
+        <p class="section-eyebrow">Principal Architect</p>
+        <h2 class="section-title">Nihanshu<br><em>Nikhare</em></h2>
+
+        <p class="about-bio">
+          Nihanshu Nikhare is an architect and designer whose work explores the delicate
+          relationship between built form and human experience. With over 15 years of
+          practice across residential, commercial, and cultural projects, his studio has
+          earned a reputation for architecture that is both intellectually rigorous
+          and deeply humane.
+        </p>
+        <p class="about-bio">
+          Trained at the School of Environment and Architecture, Mumbai, and later at
+          the Architectural Association in London, Nihanshu brings a cross-cultural
+          sensibility to every project — honouring local materiality while embracing
+          progressive global design thinking.
+        </p>
+
+        <div class="philosophy-section">
+          <h3>Design Philosophy</h3>
+          <p>
+            "Good architecture is never about the architect. It is about the light
+            at 6 AM, the breeze through a window in July, the feeling of arriving home.
+            We design for that invisible layer — the lived experience between walls."
+          </p>
+        </div>
+
+        <!-- Awards & Accolades -->
+        <div class="accolades" aria-label="Awards and recognitions">
+          <div class="accolade-item">
+            <span class="accolade-year">2023</span>
+            <div class="accolade-info">
+              <p class="accolade-title">IIID Best Interior Project – Residential</p>
+              <p class="accolade-body">Urban Loft, New Delhi</p>
+            </div>
+          </div>
+          <div class="accolade-item">
+            <span class="accolade-year">2022</span>
+            <div class="accolade-info">
+              <p class="accolade-title">Architecture + Design Excellence Award</p>
+              <p class="accolade-body">Zenith Tower, Pune</p>
+            </div>
+          </div>
+          <div class="accolade-item">
+            <span class="accolade-year">2021</span>
+            <div class="accolade-info">
+              <p class="accolade-title">Adaptive Reuse Project of the Year</p>
+              <p class="accolade-body">Heritage Renewal, Jaipur</p>
+            </div>
+          </div>
+          <div class="accolade-item">
+            <span class="accolade-year">2019</span>
+            <div class="accolade-info">
+              <p class="accolade-title">Young Architect of the Year — COA India</p>
+              <p class="accolade-body">Council of Architecture, National Award</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">Nihanshu <span>Nikhare</span></div>
+    <p class="footer-copy">© 2025 · All rights reserved</p>
+    <div class="footer-socials">
+      <a role="link" tabindex="0">Instagram</a>
+      <a role="link" tabindex="0">LinkedIn</a>
+      <a role="link" tabindex="0">Behance</a>
+    </div>
+  </footer>
+</div>
+}
+
+
+<!-- ========================================================
+     CONTACT PAGE
+     ======================================================== -->
+@if (activeTab() === 'contact') {
+<div class="page" id="contact">
+
+  <!-- Contact Hero -->
+  <section
+    style="padding: 5rem clamp(1.5rem, 6vw, 6rem) 1rem; background: var(--color-surface); border-bottom: 1px solid var(--color-border);"
+    aria-label="Contact header">
+    <p class="section-eyebrow">Contact</p>
+    <h1 class="section-title">
+      Let's start a<br>
+      <em>conversation</em>
+    </h1>
+    <p class="section-subtitle" style="margin-top: 1rem;">
+      Whether you have a project in mind, a question about our work, or simply want
+      to say hello — we'd love to hear from you.
+    </p>
+  </section>
+
+  <!-- Contact Layout -->
+  <section class="section" aria-labelledby="contact-form-title">
+    <h2 class="sr-only" id="contact-form-title">Contact Information and Form</h2>
+
+    <div class="contact-layout">
+
+      <!-- Info Panel -->
+      <div class="contact-info">
+        <p class="section-eyebrow">Reach Us</p>
+        <h2 class="section-title" style="font-size: 2rem;">
+          Studio <em>Address</em>
+        </h2>
+
+        <div class="contact-detail">
+          <div class="contact-item">
+            <div class="contact-icon">✉</div>
+            <div>
+              <p class="contact-label">Email</p>
+              <p class="contact-value">studio&#64;nihanshunikhare.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">☎</div>
+            <div>
+              <p class="contact-label">Phone</p>
+              <p class="contact-value">+91 98765 43210</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">◎</div>
+            <div>
+              <p class="contact-label">Studio</p>
+              <p class="contact-value">
+                4th Floor, Prism House,<br>
+                Baner Road, Pune — 411 045<br>
+                Maharashtra, India
+              </p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">◷</div>
+            <div>
+              <p class="contact-label">Hours</p>
+              <p class="contact-value">Mon – Sat, 9:30 AM – 6:30 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-map" role="img" aria-label="Studio location map"></div>
+      </div>
+
+      <!-- Form Panel -->
+      <div class="contact-form" aria-label="Contact form">
+        <p class="section-eyebrow" style="margin-bottom: 2rem;">Send a Message</p>
+
+        @if (formSubmitted()) {
+        <div class="form-success" role="alert" aria-live="polite">
+          <span class="success-icon">✓</span>
+          <p>Thank you! Your message has been received. We'll be in touch shortly.</p>
+        </div>
+        }
+
+        <form (ngSubmit)="submitForm()" #contactFormRef="ngForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name">Full Name *</label>
+              <input type="text" id="contact-name" name="name" [(ngModel)]="contactForm.name" placeholder="Ravi Sharma"
+                required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email Address *</label>
+              <input type="email" id="contact-email" name="email" [(ngModel)]="contactForm.email"
+                placeholder="ravi@example.com" required autocomplete="email" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Subject</label>
+            <input type="text" id="contact-subject" name="subject" [(ngModel)]="contactForm.subject"
+              placeholder="New residential project enquiry" autocomplete="off" />
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message *</label>
+            <textarea id="contact-message" name="message" [(ngModel)]="contactForm.message"
+              placeholder="Tell us about your project, timeline, and any other details that would help us understand your vision..."
+              required></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-primary">
+              Send Message <span class="arrow">→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-logo">Nihanshu <span>Nikhare</span></div>
+    <p class="footer-copy">© 2025 · All rights reserved</p>
+    <div class="footer-socials">
+      <a role="link" tabindex="0">Instagram</a>
+      <a role="link" tabindex="0">LinkedIn</a>
+      <a role="link" tabindex="0">Behance</a>
+    </div>
+  </footer>
+</div>
+}
