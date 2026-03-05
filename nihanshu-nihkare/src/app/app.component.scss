@@ -15,7 +15,7 @@
   transition: background var(--transition-base), backdrop-filter var(--transition-base), border-bottom var(--transition-base);
 
   &.scrolled {
-    background: rgba(10, 10, 10, 0.88);
+    background: var(--color-bg-nav);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--color-border);
   }
@@ -113,6 +113,27 @@
   }
 }
 
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  padding: 0.5rem;
+  margin-left: 1rem;
+  border-radius: 50%;
+  transition: all var(--transition-base);
+
+  &:hover {
+    color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 .nav__hamburger {
   display: none;
   flex-direction: column;
@@ -146,7 +167,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 10, 0.97);
+  background: var(--color-bg-menu);
   backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
@@ -248,12 +269,12 @@
     inset: 0;
     background: linear-gradient(
       180deg,
-      rgba(10, 10, 10, 0.1) 0%,
-      rgba(10, 10, 10, 0.05) 30%,
-      rgba(10, 10, 10, 0.15) 60%,
-      rgba(10, 10, 10, 0.6) 85%,
-      #0a0a0a 98%,
-      #0a0a0a 100%
+      var(--color-bg-hero-1) 0%,
+      var(--color-bg-hero-2) 30%,
+      var(--color-bg-hero-3) 60%,
+      var(--color-bg-hero-4) 85%,
+      var(--color-bg) 98%,
+      var(--color-bg) 100%
     );
     z-index: 1;
   }
@@ -675,7 +696,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(transparent, rgba(10,10,10,0.9));
+    background: linear-gradient(transparent, var(--color-bg-overlay));
   }
 
   &__content {
@@ -841,7 +862,7 @@
   &__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(transparent, rgba(10,10,10,0.95));
+    background: linear-gradient(transparent, var(--color-bg-overlay));
   }
 
   &__content {
@@ -1073,11 +1094,11 @@
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--color-text);
-      background: rgba(10,10,10,0.55);
+      background: var(--color-bg-map-overlay);
       transition: background var(--transition-base);
     }
 
-    &:hover::after { background: rgba(10,10,10,0.3); }
+    &:hover::after { background: var(--color-bg-map-overlay-hover); }
   }
 }
 

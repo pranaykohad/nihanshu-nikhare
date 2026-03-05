@@ -49,7 +49,10 @@
     <!-- Carousel Background -->
     <div class="hero__carousel" aria-hidden="true">
       @for (img of heroImages; track img; let i = $index) {
-      <img class="hero__carousel-slide" [class.active]="activeHeroSlide() === i" [src]="img" alt="" loading="eager" />
+      <picture class="hero__carousel-slide" [class.active]="activeHeroSlide() === i">
+        <source [srcset]="img.replace('.jpg', '.webp')" type="image/webp" />
+        <img [src]="img" alt="" loading="eager" />
+      </picture>
       }
     </div>
     <div class="hero__overlay"></div>
@@ -101,8 +104,10 @@
     <div class="featured-grid">
       <div class="featured-item large" (click)="setTab('projects')" tabindex="0" role="button"
         aria-label="View project: Casa Serena">
-        <img class="featured-item__img" src="assets/tim-stief-dH6IjhWHNQQ-unsplash.jpg" alt="Casa Serena – luxury villa"
-          loading="lazy" />
+        <picture class="featured-item__img">
+          <source srcset="assets/tim-stief-dH6IjhWHNQQ-unsplash.webp" type="image/webp" />
+          <img src="assets/tim-stief-dH6IjhWHNQQ-unsplash.jpg" alt="Casa Serena – luxury villa" loading="lazy" />
+        </picture>
         <div class="featured-item__info">
           <h3>Casa Serena</h3>
           <p>Residential · Mumbai</p>
@@ -110,8 +115,11 @@
       </div>
       <div class="featured-item" (click)="setTab('projects')" tabindex="0" role="button"
         aria-label="View project: Zenith Tower">
-        <img class="featured-item__img" src="assets/sean-pollock-PhYq704ffdA-unsplash.jpg"
-          alt="Zenith Tower – commercial high rise" loading="lazy" />
+        <picture class="featured-item__img">
+          <source srcset="assets/sean-pollock-PhYq704ffdA-unsplash.webp" type="image/webp" />
+          <img src="assets/sean-pollock-PhYq704ffdA-unsplash.jpg" alt="Zenith Tower – commercial high rise"
+            loading="lazy" />
+        </picture>
         <div class="featured-item__info">
           <h3>Zenith Tower</h3>
           <p>Commercial · Pune</p>
@@ -119,8 +127,11 @@
       </div>
       <div class="featured-item" (click)="setTab('projects')" tabindex="0" role="button"
         aria-label="View project: Mist Pavilion">
-        <img class="featured-item__img" src="assets/howard-bouchevereau-042Srn0-82o-unsplash.jpg"
-          alt="Mist Pavilion – landscape architecture" loading="lazy" />
+        <picture class="featured-item__img">
+          <source srcset="assets/howard-bouchevereau-042Srn0-82o-unsplash.webp" type="image/webp" />
+          <img src="assets/howard-bouchevereau-042Srn0-82o-unsplash.jpg" alt="Mist Pavilion – landscape architecture"
+            loading="lazy" />
+        </picture>
         <div class="featured-item__info">
           <h3>Mist Pavilion</h3>
           <p>Landscape · Coorg</p>
@@ -218,7 +229,10 @@
       @for (project of filteredProjects; track project.id) {
       <article class="project-card" [attr.aria-label]="project.title">
         <div class="project-card__img-wrap">
-          <img class="project-card__img" [src]="project.image" [alt]="project.title" loading="lazy" />
+          <picture class="project-card__img">
+            <source [srcset]="project.image | toWebP" type="image/webp" />
+            <img [src]="project.image" [alt]="project.title" loading="lazy" />
+          </picture>
           @if (project.tag) {
           <span class="project-card__tag">{{ project.tag }}</span>
           }
@@ -277,9 +291,14 @@
     <div class="about-layout">
       <!-- Image Stack -->
       <div class="about-image-stack" aria-hidden="true">
-        <img class="img-main" src="assets/donny-jiang-42gFAgdIUC8-unsplash.jpg" alt="Studio at work" loading="lazy" />
-        <img class="img-accent" src="assets/iltun-huseynli-rfklsTwIYBM-unsplash.jpg" alt="Architectural detail"
-          loading="lazy" />
+        <picture class="img-main">
+          <source srcset="assets/donny-jiang-42gFAgdIUC8-unsplash.webp" type="image/webp" />
+          <img src="assets/donny-jiang-42gFAgdIUC8-unsplash.jpg" alt="Studio at work" loading="lazy" />
+        </picture>
+        <picture class="img-accent">
+          <source srcset="assets/iltun-huseynli-rfklsTwIYBM-unsplash.webp" type="image/webp" />
+          <img src="assets/iltun-huseynli-rfklsTwIYBM-unsplash.jpg" alt="Architectural detail" loading="lazy" />
+        </picture>
         <div class="experience-badge">
           <span class="badge-number">3+</span>
           <span class="badge-text">Years of<br>Practice</span>
@@ -402,7 +421,7 @@
             <div class="contact-icon">✉</div>
             <div>
               <p class="contact-label">Email</p>
-              <p class="contact-value">studio&#64;nihanshunikhare.com</p>
+              <p class="contact-value">studio&#64;designnvision.in</p>
             </div>
           </div>
           <div class="contact-item">
@@ -417,8 +436,8 @@
             <div>
               <p class="contact-label">Studio</p>
               <p class="contact-value">
-                4th Floor, Prism House,<br>
-                Baner Road, Pune — 411 045<br>
+                2nd Floor, Nihkare House,<br>
+                Queta Colony, Telephone Exchange Square, Nagpur — 440 008<br>
                 Maharashtra, India
               </p>
             </div>
@@ -427,13 +446,13 @@
             <div class="contact-icon">◷</div>
             <div>
               <p class="contact-label">Hours</p>
-              <p class="contact-value">Mon – Sat, 9:30 AM – 6:30 PM</p>
+              <p class="contact-value">Mon – Sat, 10:30 AM – 07:30 PM</p>
             </div>
           </div>
         </div>
 
         <a class="contact-map"
-          href="https://www.google.com/maps/@21.1521863,79.1175153,66m/data=!3m1!1e3?entry=ttu&g_ep=EgoyMDI2MDMwMS4xIKXMDSoASAFQAw%3D%3D"
+          href="https://www.google.com/maps/place/21%C2%B009'07.8%22N+79%C2%B007'03.2%22E/@21.1522865,79.1175323,92a,56.6y,90h,4.47t/data=!3m1!1e3!4m4!3m3!8m2!3d21.152175!4d79.117556?entry=ttu&g_ep=EgoyMDI2MDMwMS4xIKXMDSoASAFQAw%3D%3D"
           target="_blank" rel="noopener noreferrer" style="display: block; text-decoration: none; cursor: pointer;"
           aria-label="Open Studio location map in Google Maps"></a>
       </div>

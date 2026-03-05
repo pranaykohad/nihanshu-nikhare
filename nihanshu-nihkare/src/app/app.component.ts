@@ -4,9 +4,12 @@ import {
   OnInit,
   OnDestroy,
   signal,
+  Inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DOCUMENT } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { OptimizedImgComponent } from './components/optimized-img.component';
+import { ToWebPPipe } from './pipes/to-webp.pipe';
 
 type Tab = 'home' | 'projects' | 'about' | 'contact';
 
@@ -24,7 +27,7 @@ interface Project {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, OptimizedImgComponent, ToWebPPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -34,6 +37,8 @@ export class AppComponent implements OnInit, OnDestroy {
   navScrolled = signal(false);
   activeFilter = signal('All');
   heroImageLoaded = signal(false);
+
+  constructor(@Inject(DOCUMENT) private document: Document) {}
 
   // Hero carousel
   heroImages: string[] = [
